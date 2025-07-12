@@ -79,10 +79,11 @@ Click into your lambda function
 - Code
   - upload from .zip file (the .zip file in this repo or your own zip)
   - If you want your own zipped code (summary)
-    - I created a docker container with the `amazonlinux:latest` image. **MAKE SURE this is the same architecture(arm64), OS(amazonlinux), and Runtime(Python3.12) as the Lambda Function**
-    - ran it in interactive mode mounting my working directory to /var/task/
-    - inside the container I installed the python3.12 with `yum install python3.12`
-    - use python3.12 to create your venv and activate it
+    - Create a docker container with the `amazonlinux:latest` image. **MAKE SURE this is the same architecture(arm64), OS(amazonlinux), and Runtime(Python3.12) as the Lambda Function**
+    - run it in interactive mode mounting your working directory to /var/task/ or something else
+    - inside the container cd into the mounted path then install the python3.12 with `yum install python3.12`
+    - use python3.12 to create the venv and activate it
+      - `python3.12 -m venv .venv`
     - `pip install --target ./package google-generativeai ask-sdk-core`
       - this will create the necessary packages needed to import libraries
     - `touch lambda_function.py` and create your code, needs to be this name
